@@ -1,0 +1,58 @@
+import express from 'express';
+import bodyParser from 'body-parser';
+import fs from 'fs';
+
+const app = express();
+const port = 3000;
+const dbFile = 'db.json';
+
+app.use(bodyParser.json());
+
+app.get('/', (req: express.Request, res: express.Response) => {
+    res.send('Welcome to the API');
+});
+
+app.get('/ping', (req: express.Request, res: express.Response) => {
+    res.send(true);
+});
+
+app.post('/submit', (req: express.Request, res: express.Response) => {
+    const { name, email, phone, github_link, stopwatch_time } = req.body;
+    const newSubmission = { name, email, phone, github_link, stopwatch_time };
+
+    let submissions = [];
+    if (fs.existsSync(dbFile)) {
+        const data = fs.readFileSync(dbFile, 'utf-8');
+        submissions = JSON.parse(data);
+    }
+
+    submissions.push(newSubmission);
+    fs.writeFileSync(dbFile, JSON.stringify(submissions, null, 2));
+
+    res.send({ success: true });
+});
+
+app.get('/read', (req: express.Request, res: express.Response) => {
+    const index = parseInt(req.query.index as string);
+    if (isNaN(index)) {
+        res.status(400).send('Invalid index');
+        return;
+    }
+
+    if (fs.existsSync(dbFile)) {
+        const data = fs.readFileSync(dbFile, 'utf-8');
+        const submissions = JSON.parse(data);
+
+        if (index >= 0 && index < submissions.length) {
+            res.send(submissions[index]);
+        } else {
+            res.status(404).send('Submission not found');
+        }
+    } else {
+        res.status(404).send('No submissions found');
+    }
+});
+
+app.listen(port, () => {
+    console.log(`Server is running at http://localhost:${port}`);
+});
