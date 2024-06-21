@@ -1,0 +1,44 @@
+[
+  {
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "phone": "1234567890",
+    "github_link": "https://github.com/johndoe",
+    "stopwatch_time": "00:10:30"
+  },
+  {
+    "name": "John",
+    "email": "johnexample.com",
+    "phone": "1234567",
+    "github_link": "https://github.com/john",
+    "stopwatch_time": "00:70:00"
+  },
+  {
+    "name": "Alice",
+    "email": "alice@example.com",
+    "phone": "9876543210",
+    "github_link": "https://github.com/alice",
+    "stopwatch_time": "02:30:45"
+  },
+  {
+    "name": "Emily",
+    "email": "emily@example.com",
+    "phone": "5432109876",
+    "github_link": "https://github.com/emily",
+    "stopwatch_time": "00:15:20"
+  },
+  {
+    "name": "David",
+    "email": "david@example.com",
+    "phone": "6543210987",
+    "github_link": "https://github.com/david",
+    "stopwatch_time": "05:30:00"
+  },
+  {
+    "name": "Charlie",
+    "email": "charlieexample.com",
+    "phone": "7654321098",
+    "github_link": "https://github.com/charlie",
+    "stopwatch_time": "00:45:30"
+  }
+]
